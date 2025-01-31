@@ -1,0 +1,35 @@
+{
+    "Conehead Zombie": {
+        "imageSrc": "./zombies/ConeheadZombie.png",
+        "health": 150,
+        "speed": 1,
+        "attack": 1,
+        "attackSpeed": 1,
+        "attackRange": 1,
+        "frames": 3,
+        "w": 48,
+        "h": 80
+    },
+    "Flag Zombie": {
+        "imageSrc": "./zombies/FlagZombie.png",
+        "health": 100,
+        "speed": 1,
+        "attack": 1,
+        "attackSpeed": 1,
+        "attackRange": 1,
+        "frames": 3,
+        "w": 64,
+        "h": 64
+    },
+    "Zombie": {
+        "imageSrc": "./zombies/Zombie.png",
+        "health": 100,
+        "speed": 1,
+        "attack": 1,
+        "attackSpeed": 1,
+        "attackRange": 1,
+        "frames": 3,
+        "w": 48,
+        "h": 64
+    }
+}

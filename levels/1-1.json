@@ -1,0 +1,12 @@
+{
+    "level": "1-1",
+    "map": null,
+    "waves": [
+        {"Zombie": 2},
+        {"Zombie": 3},
+        {"Zombie": 3, "Conehead Zombie": 1},
+        {"Zombie": 3, "Conehead Zombie": 2},
+        {"Zombie": 4, "Conehead Zombie": 2}
+    ],
+    "prize": "MESSAGE1"
+}
