@@ -38,7 +38,7 @@ class Sun {
             const dx = topbar.x - this.x;
             const dy = topbar.y - this.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
-            const speed = Math.min(distance * 0.2, 20);
+            const speed = Math.max(distance * 0.2, 20);
             const angle = Math.atan2(dy, dx);
             this.claimVx = Math.cos(angle) * speed;
             this.claimVy = Math.sin(angle) * speed;

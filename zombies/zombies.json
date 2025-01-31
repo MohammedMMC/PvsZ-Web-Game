@@ -7,7 +7,7 @@
         "attackSpeed": 1,
         "attackRange": 1,
         "frames": 3,
-        "w": 48,
+        "w": 47,
         "h": 80
     },
     "Flag Zombie": {
@@ -18,7 +18,7 @@
         "attackSpeed": 1,
         "attackRange": 1,
         "frames": 3,
-        "w": 64,
+        "w": 63,
         "h": 64
     },
     "Zombie": {
@@ -29,7 +29,7 @@
         "attackSpeed": 1,
         "attackRange": 1,
         "frames": 3,
-        "w": 48,
+        "w": 47,
         "h": 64
     }
 }

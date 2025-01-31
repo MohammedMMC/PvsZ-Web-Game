@@ -7,6 +7,10 @@ class PlantPowers {
         this.startTime = Date.now();
         this.seconds = 0;
         this.powerSent = false;
+
+        this.projectileImage = new Image();
+        this.projectileImage.src = plant.projectile;
+
         /** @type {plant} */
         this.plant = plant;
         /** @type {grid} */
@@ -24,6 +28,12 @@ class PlantPowers {
                 this.powerSent = true;
                 this.generateFlower(1.3);
             } else { this.powerSent = false; }
+        } else if (this.plant.name === "Peashooter") {
+            if (this.seconds % 1.4 === 0) {
+                if (this.powerSent) return;
+                this.powerSent = true;
+                this.generatePea();
+            } else { this.powerSent = false; }
         }
     }
 
@@ -33,5 +43,14 @@ class PlantPowers {
                 fromSkies: false, image: utilitiesImage, scale,
                 x: this.grid.x + (MAP.grid.w / 8) / (3 + Math.random()), y: this.grid.y + 10 + (Math.random() * 10)
             }));
+    }
+
+    generatePea() {
+        peas.push(
+            new Pea({
+                image: this.projectileImage, scale,
+                Gx: this.grid.x, Gy: this.grid.y
+            }));
+
     }
 }

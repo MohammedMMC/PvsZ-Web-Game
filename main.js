@@ -11,7 +11,7 @@ const UTILITIES = getJSON("./exp/PvsZ Utilities2.json");
 /** @type {{[key: string]: {x: number, y: number, w: number, h: number}}} */
 const GROUNDS = getJSON("./exp/PvsZ Utilities.json");
 
-/** @type {{[key: string]: {name: string, image: string, price: number, damage: number, range: number, health: number, frames: number, w: number, h: number}}} */
+/** @type {{[key: string]: {name: string, image: string, projectile: string, price: number, damage: number, range: number, health: number, frames: number, w: number, h: number}}} */
 const PLANTS = getJSON("./plants/plants.json");
 
 /** @type {{[key: string]: {imageSrc: string, health: number, speed: number, attack: number, attackSpeed: number, attackRange: number, frames: number, w: number, h: number}}} */
@@ -52,10 +52,8 @@ let selectedPlants = PLANTS;
 let topbarPlantsData = [];
 /** @type {PLANTS[key: string] | null} */
 let holdingPlant = null;
-
 /** @type {Array<{Gx: number,Gy: number, plant: PLANTS[key: string]}>} */
 let plantsGrid = [];
-
 /** @type {Array<Zombie>} */
 let zombiesGrid = [];
 
@@ -124,7 +122,7 @@ function animate() {
         // DRAW PLANT
         if (!pg.plant.frame) pg.plant.frame = 0;
         if (!pg.plant.reverse) pg.plant.reverse = false;
-        if (framesElapsed % Math.ceil(25 / pg.plant.frames) === 0) {
+        if (framesElapsed % Math.ceil(16 / pg.plant.frames) === 0) {
             if (!pg.plant.reverse) {
                 if (pg.plant.frame < pg.plant.frames - 1) {
                     pg.plant.frame = pg.plant.frame + 1;
@@ -159,7 +157,7 @@ function animate() {
     if (currentWave < LEVEL1_1.waves.length) {
         const waveElapsedTime = (Date.now() - waveStartTime) / 1000;
         const currentWaveZombies = Object.values(LEVEL1_1.waves[currentWave]).reduce((a, b) => a + b, 0);
-        
+
         progressbar.progress = Math.min(((currentWave * 60 + Math.min(waveElapsedTime, 60)) / ((LEVEL1_1.waves.length - 1) * 60)) * 100, 100);
 
         if (waveElapsedTime >= 60) {
@@ -169,13 +167,19 @@ function animate() {
         } else if (waveElapsedTime >= 5 && zombiesInWave < currentWaveZombies && waveElapsedTime >= 10 + ((55 / currentWaveZombies) * zombiesInWave)) {
             const zombieTypes = [];
             Object.entries(LEVEL1_1.waves[currentWave]).forEach(([type, count]) => zombieTypes.push(...Array(count).fill(type)));
-            
-            console.log(`Spawning ${zombieTypes[Math.floor(Math.random() * zombieTypes.length)]} in row ${Math.floor(Math.random() * 5)}`);
+
+            zombiesGrid.push(new Zombie({ Gy: Math.floor(Math.random() * 5), zombie: ZOMBIES[zombieTypes[Math.floor(Math.random() * zombieTypes.length)]] }));
             zombiesInWave++;
         }
     } else {
         console.log("Level Complete!");
     }
+    zombiesGrid.forEach(z => {
+        z.draw();
+        if (z.zombie.health <= 0) {
+            zombiesGrid = zombiesGrid.filter(zg => zg !== z);
+        }
+    });
 
     // DRAW HOLDED PLANT
     if (holdingPlant !== null) {
