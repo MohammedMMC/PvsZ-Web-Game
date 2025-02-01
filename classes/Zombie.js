@@ -14,23 +14,25 @@ class Zombie {
         this.y = y ?? (MAP.grid.y + Gy * MAP.grid.h / 5 + (MAP.grid.h / 5 - 100) / 2);
         this.image = new Image();
         this.image.src = zombie.imageSrc;
-        this.zombie = zombie;
+        this.zombie = JSON.parse(JSON.stringify(zombie));
         this.scale = scale;
         this.framesElapsed = 0;
         this.frame = 1;
     }
 
     draw() {
+        if (this.zombie.health <= 0) {
+            zombiesGrid = zombiesGrid.filter(zg => zg !== this);
+        }
         if (++this.framesElapsed % 15 === 0) {
             this.direction = this.direction ?? 1;
             this.frame += this.direction;
-            
+
             if (this.frame >= this.zombie.frames || this.frame <= 1) {
                 this.direction *= -1;
                 this.frame = this.frame >= this.zombie.frames ? this.zombie.frames : 1;
             }
-        this.x -= 0.4 * this.zombie.speed * 15;
-
+            this.x -= 0.4 * this.zombie.speed * 10;
         }
 
         ctx.drawImage(this.image,

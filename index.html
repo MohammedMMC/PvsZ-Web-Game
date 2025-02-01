@@ -9,12 +9,28 @@
 </head>
 
 <body>
+    <div id="alert">
+        <div class="card">
+            <h1>Plants vs. Zombies Game</h1>
+            <p>Welcome! The game is not finished yet but you can play some of its features.
+                <br>While the drawings is a work in progress,
+                <br>I hope you'll enjoy playing it. More features and improvements
+                <br>including sound effects will be added in future updates.
+            </p>
+            <h4>Have fun!</h4>
+            <button onclick="document.getElementById('alert').style.display = 'none';animateGame()">Start the
+                game</button>
+            <a href="https://youtu.be/DVtpr6Q13kw">if you are a phone,<br> watch a video</a>
+        </div>
+
+    </div>
     <canvas></canvas>
-    <script src="./PlantPowersClass.js"></script>
-    <script src="./ProgressbarClass.js"></script>
-    <script src="./ZombieClass.js"></script>
-    <script src="./SunClass.js"></script>
-    <script src="./TopbarClass.js"></script>
+    <script src="./classes/Pea.js"></script>
+    <script src="./classes/PlantPowers.js"></script>
+    <script src="./classes/Progressbar.js"></script>
+    <script src="./classes/Sun.js"></script>
+    <script src="./classes/Topbar.js"></script>
+    <script src="./classes/Zombie.js"></script>
     <script src="./functions.js"></script>
     <script src="./main.js"></script>
 </body>

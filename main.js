@@ -32,7 +32,7 @@ ctx.fillStyle = "black";
 ctx.fillRect(0, 0, canvas.width, canvas.height);
 
 const gameMapImage = new Image();
-gameMapImage.onload = animate;
+// gameMapImage.onload = animateGame;
 gameMapImage.src = MAP.path;
 
 let utilitiesImage = new Image();
@@ -46,6 +46,8 @@ groundsImage.src = "./exp/PvsZ Utilities.png";
 // GAME VARIABLES
 /** @type {Array<Sun>} */
 let suns = [];
+/** @type {Array<Pea>} */
+let peas = [];
 let collectedSuns = 100;
 let selectedPlants = PLANTS;
 /** @type {Array<{x: number,y: number,w: number,h: number, plant: PLANTS[key: string]}>} */
@@ -80,8 +82,8 @@ const progressbar = new Progressbar({
     image: utilitiesImage
 });
 
-function animate() {
-    const animationId = requestAnimationFrame(animate);
+function animateGame() {
+    const animationId = requestAnimationFrame(animateGame);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(gameMapImage, 0, 0);
 
@@ -148,7 +150,7 @@ function animate() {
             100, 100);
 
         // PLANT POWERS
-        if (!pg.plant.power) pg.plant.power = new PlantPowers(pg.plant, { x: gridXpos, y: gridYpos })
+        if (!pg.plant.power) pg.plant.power = new PlantPowers(pg.plant, { x: gridXpos, y: gridYpos, Gy: pg.Gy, Gx: pg.Gx })
         pg.plant.power.tick();
 
     });
@@ -174,12 +176,7 @@ function animate() {
     } else {
         console.log("Level Complete!");
     }
-    zombiesGrid.forEach(z => {
-        z.draw();
-        if (z.zombie.health <= 0) {
-            zombiesGrid = zombiesGrid.filter(zg => zg !== z);
-        }
-    });
+    zombiesGrid.forEach(z => z.draw());
 
     // DRAW HOLDED PLANT
     if (holdingPlant !== null) {
@@ -213,6 +210,7 @@ function animate() {
 
     // DRAW FALLING SUNS
     suns.forEach(s => s.draw());
+    peas.forEach(p => p.draw());
 
     // cancelAnimationFrame(animationId);
 }

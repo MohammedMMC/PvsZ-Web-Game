@@ -1,7 +1,7 @@
 {
     "Conehead Zombie": {
         "imageSrc": "./zombies/ConeheadZombie.png",
-        "health": 150,
+        "health": 640,
         "speed": 1,
         "attack": 1,
         "attackSpeed": 1,
@@ -12,7 +12,7 @@
     },
     "Flag Zombie": {
         "imageSrc": "./zombies/FlagZombie.png",
-        "health": 100,
+        "health": 270,
         "speed": 1,
         "attack": 1,
         "attackSpeed": 1,
@@ -23,7 +23,7 @@
     },
     "Zombie": {
         "imageSrc": "./zombies/Zombie.png",
-        "health": 100,
+        "health": 270,
         "speed": 1,
         "attack": 1,
         "attackSpeed": 1,
