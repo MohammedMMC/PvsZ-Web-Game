@@ -2,6 +2,8 @@
 
 A web-based recreation of the classic Plants vs Zombies game.
 
+![Preview Image](https://github.com/MohammedMMC/PvsZ-Web-Game/blob/main/preview.png?raw=true)
+
 ## Description
 
 This project aims to recreate the popular Plants vs Zombies game using web technologies.
